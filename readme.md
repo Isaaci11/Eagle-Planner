@@ -2,6 +2,7 @@
 
 ## Overview
 EaglePlanner is a to-do list style planner built for students at EPHS. It connects to the Schoology API and loads your assignments automatically. It also includes basic features of a to-do list such as adding custom assignments and editing the assignment aspects.
+Play at https://schoologyapi.lukewithers.repl.co/
 
 ## HTML, CSS, and JS
 We used HTML, CSS, and JS for the base of our website. The styles and basic functionality is executed here.
