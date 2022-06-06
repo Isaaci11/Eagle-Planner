@@ -8,3 +8,7 @@ We used HTML, CSS, and JS for the base of our website. The styles and basic func
 
 ## Python
 Python is used as our backend. It does the calculations for dates and communicates with the Schoology API. We use AJAX to fetch data from the Python which is hosted by the server, and then the JavaScript distributes the data.
+
+
+### Contributors
+This project was developed by Luke Withers, Isaac Isiko, and Paawan Kathuria.
