@@ -1,0 +1,736 @@
+body, html {
+  margin: 0;
+  padding: 0;
+/*   background-color: #fafafa; */
+  background-color: #eff0f1;
+}
+
+.container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#headerbuttons {
+  display: flex;
+  width: 50%;
+  justify-content: right;
+}
+
+#colorbutton {
+  margin-right: 2%;
+  background-color: rgba(100, 100, 100, 0.15);
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 1.25rem;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#colorbutton:hover {
+  background-color: rgba(100, 100, 100, 0.5);
+}
+
+#colorinput {
+  background: none;
+  border: none;
+  width: 100%;
+  height: inherit;
+  opacity: 0;
+}
+
+#coloricon {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* title of website */
+.title {
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4rem;
+  margin: 2% 0 2% 0;
+  color: #141414;
+}
+
+.subtitle {
+  text-align: left;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 3rem;
+  margin: 0 0 2% 10.5%;
+  color: #141414;
+  display: none;
+}
+
+#connectbutton {
+  background-color: rgba(37, 150, 190, 0.35);
+  padding: 0% 2%;
+  height: 2.5rem;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 1.25rem;
+  font-family: 'Inter', sans-serif;
+}
+
+#connectbutton:hover {
+  background-color: rgba(37, 150, 190, 0.5);
+}
+
+#disconnectbutton {
+  background-color: rgba(255, 0, 0, 0.35);
+  padding: 0% 2%;
+  height: 2.5rem;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 1.25rem;
+  font-family: 'Inter', sans-serif;
+  display: none;
+}
+
+#disconnectbutton:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+/* entire section of day buttons */
+.daypicker {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+/*   border-bottom: 0.15rem solid #d1d1d1; */
+  border-bottom: 0.15rem solid #383838;
+}
+
+/* each button to select day */
+.daybutton {
+  background-color: rgba(0, 0, 0, 0);
+  width: 12.5%;
+  text-transform: uppercase;
+  border: none;
+/*   border-right: 0.15rem solid #d1d1d1; */
+  border-right: 0.15rem solid #383838;
+  margin-bottom: 0.5%;
+  padding: 0%;
+  font-size: 1.5rem;
+  font-family: 'Montseratt', sans-serif;
+  font-weight: 200;
+}
+
+.daybuttonlight {
+  color: #808080;
+}
+
+.daybuttonlight:hover {
+  color: #000000;
+}
+
+.daybuttondark {
+  color: #d1d1d1;
+}
+
+.daybuttondark:hover {
+  color: #ffffff;
+}
+
+.weekday {
+  font-size: 1.5rem;
+  color: #030303;
+  font-family: 'Montseratt', sans-serif;
+  font-weight: 200;
+}
+
+.date {
+  font-size: 1.75rem;
+  color: inherit;
+  font-family: 'Montseratt', sans-serif;
+  font-weight: 200;
+  pointer-events: none;
+  margin: 0;
+}
+
+#right {
+  color: inherit;
+}
+
+.date:hover {
+  color: black;
+  transition: color 0.2s linear;
+}
+
+/* when day button is hovered over */
+.daybutton:hover {
+/*   background-color: rgba(100, 100, 100, 0.10); */
+  transition: color 0.2s linear;
+}
+
+/* when day button is selected */
+.selected {
+/*   background-color: rgba(100, 100, 100, 0.15); */
+  color: black;
+}
+
+#mon {
+  border-left: none;
+}
+#more {
+  border-right: none;
+}
+
+/* entire section of assignments */
+.assignments {
+  width: 80%;
+  margin: 1% 10%;
+}
+
+/* each assignment */
+.assignment {
+/*   background-color: #cccccc; */
+/*   background-color: #bfbfbf; */
+  background-color: rgba(210, 210, 210, 1);
+  padding: 0% 1% 0% 0.75%;
+  height: 3.5rem;
+  display: flex;
+  transition: all 0.15s ease;
+  justify-content: space-between;
+  align-items: center;
+/*   border: 0.15rem solid #a6a6a6; */
+/*   border: 0.15rem solid #757575; */
+  border-radius: 0.25rem;
+  margin: 0.75% 0;
+  box-shadow: rgba(0, 0, 0, 0.25) 1.95px 1.95px 2.6px;
+/*   color: #aa1818; */
+/*   border-top: 0.15rem solid #383838; */
+/*   border-bottom: 0.15rem solid #383838; */
+}
+
+/* title of assignment */
+.assignmenttitle {
+  font-family: 'Montserrat', sans-serif;
+  max-width: 80%;
+/*   outline-color: #383838;
+  outline-offset: 0.2rem;
+  outline-width: 0.15rem;
+  outline-style: none; */
+/*   outline: none; */
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  outline: none;
+  transition: .1s;
+  padding: 0.25rem 0.5rem;
+}
+
+.assignmenttitle:focus {
+  box-shadow: 0 0 0pt 1pt #383838;
+}
+
+.assignmentstuff {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  width: 80%;
+}
+
+.assignmentname {
+  flex-basis: fit-content;
+  flex-shrink: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.assignmentname:focus {
+/*   border: 0.15rem solid #383838; */
+}
+
+.assignmentclass {
+  flex-shrink: 2;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-grow: 1;
+}
+
+.assignmentclass:focus {
+  text-overflow: clip;
+}
+
+.assignmentdash {
+  flex-basis: fit-content;
+  flex-shrink: 0;
+  padding: 0 0.2rem;
+  margin: 0;
+}
+
+/* entire section of buttons in assignment */
+.assignmentbuttons {
+  margin-right: -0.75%;
+  min-width: fit-content;
+  flex-shrink: 0;
+}
+
+/* each button in assignment */
+.assignmentbutton {
+  height: 3rem;
+  width: 3rem;
+  margin: 0%;
+  border: none;
+  border-radius: 0.5rem;
+/*   background-color: #e6e6e6; */
+/*   background-color: #bfbfbf; */
+  background-color: rgba(0, 0, 0, 0);
+} 
+
+/* When assignment button is hovered over */
+.assignmentbutton:hover {
+/*   background-color: #d9d9d9; */
+  background-color: #8c8c8c;
+}
+
+.fa-solid {
+  color: #000000;
+}
+
+.notselected {
+  display: none;
+}
+
+.template {
+  display: none;
+}
+
+.animateout {
+/*   transform: scale(0); */
+/*   transform: translate(-150%, 0); */
+  transform: scale(1.25, 1.25);
+  opacity: 0;
+}
+/* .selectedday {
+  display: block;
+} */
+/* 
+.notselectedday {
+  display: none;
+} */
+
+#confirmdelete {
+  position: absolute;
+  top: 6rem;
+  left: 38%;
+  background-color: #dbdbdb;
+  z-index: 1;
+  border-radius: 0.25rem;
+/*   border: 0.15rem solid #000000; */
+  display: none;
+  justify-content: space-between;
+  padding: 0.5% 1%;
+  width: 16vw;
+/*   padding: 0; */
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+#confirmdeletebutton {
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(100, 100, 100, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.25) 1.95px 1.95px 2.6px;
+  height: 3rem;
+  width: 3rem;
+  margin-left: 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  display: none;
+}
+
+#confirmdeletebutton:hover {
+  background-color: #8c8c8c;
+}
+
+.confirmbuttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
+/*   padding: 0 5%; */
+}
+
+.confirmtext {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+
+.confirmtextdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.cancelbutton {
+  background-color: rgba(245, 245, 245, 1);
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 2rem;
+  font-family: 'Inter', sans-serif;
+  margin-right: 2%;
+}
+
+.confirmbutton {
+  background-color: rgba(245, 245, 245, 1);
+  padding: 2% 2%;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 1.25rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.confirmbutton:hover {
+  background-color: #d9d9d9;
+}
+
+.fa-xmark {
+  margin: auto auto;
+}
+
+.deleteabutton {
+  background-color: rgba(245, 245, 245, 1);
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 2rem;
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  margin-left: 2%;
+}
+
+.cancelbutton:hover {
+  background-color: #d9d9d9;
+}
+
+.deleteabutton:hover {
+  background-color: #7d1c1c;
+}
+
+.warning {
+}
+
+.warningdiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.addassignment {
+  background-color: rgba(210, 210, 210, 0.75);
+  text-transform: uppercase;
+  padding: 0.5% 1%;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+/*   font-size: 1.5rem; */
+  font-size: 1.25rem;
+/*   font-weight: 500; */
+  font-family: 'Inter', sans-serif;
+}
+
+.addassignment:hover {
+  background-color: rgba(190, 190, 190, 0.9);
+}
+
+.adddiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #editassignment {
+  position: absolute;
+  top: 6rem;
+  left: 32.5%;
+  background-color: #c7c7c7;
+  width: 35%;
+  z-index: 1;
+  border-radius: 0.5rem;
+  border: 0.15rem solid #383838;
+  display: none;
+  padding: 2% 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+} */
+
+#dateassignment {
+  position: absolute;
+  appearance: none;
+  width: 12%;
+  -webkit-appearance: none;
+  color: black;
+  font-family: "Inter", sans-serif;
+  font-size: 1.25rem;
+  background-color: rgba(100, 100, 100, 0.15);
+  padding: 0.75% 0.5% 0.75% 0.5%;
+  border: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  bottom: 0;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+#datepicker {
+  position: absolute;
+  width: 10%;
+/*   display: none; */
+}
+
+.dateassignment:focus {
+  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
+}
+
+input {
+  margin: 1% 0 1% -2%;
+  font-size: 1.25rem;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  padding: 1.5% 0 1.5% 2%;
+  border-radius: 0.25rem;
+  border: 0.15rem solid #383838;
+}
+
+.inputs {
+  width: 85%;
+  margin: 4% auto;
+}
+
+.blanktext {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  margin-left: 7%;
+  margin-top: -3%;
+  margin-bottom: 5%;
+}
+
+#assignmentinfo {
+  position: absolute;
+  background-color: rgba(215, 215, 215, 0.95);
+  width: 22%;
+  z-index: 1;
+  border-radius: 0.25rem;
+/*   border: 0.15rem solid #383838; */
+  display: none;
+  padding: 1% 0;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+#descriptiontext {
+  font-size: 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  max-width: 92.5%;
+  margin: 0;
+  margin-left: 5%;
+}
+
+.description {
+  font-size: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  max-width: 95%;
+  margin: 0;
+  margin-bottom: 1%;
+  margin-left: 5%;
+}
+
+#assignmentname {
+  font-size: 2.25rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  margin: 5% auto;
+  max-width: 90%;
+}
+
+#assignmentclass {
+  font-size: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  margin: 1% auto;
+  max-width: 90%;
+}
+
+#assignmentdesc {
+  font-size: 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  margin: 5% auto;
+  max-width: 90%;
+  line-height: 1.2em;
+  max-height: 3.6em;
+  overflow: hidden;
+/*   white-space: nowrap;
+  text-overflow: ellipsis; */
+}
+
+#assignmentdue {
+  font-size: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  text-align: center;
+  margin: 3% auto;
+  max-width: 90%;
+}
+
+#connect {
+  position: absolute;
+  top: 7rem;
+  left: 30%;
+  background-color: #dbdbdb;
+  width: 40%;
+  z-index: 1;
+  border-radius: 0.25rem;
+/*   border: 0.15rem solid #383838; */
+  display: none;
+  padding: 2% 0;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.connectinfo {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  text-align: center;
+  margin: 2% auto;
+  max-width: 90%;
+}
+
+.connectabutton {
+  background-color: rgba(37, 150, 190, 0.35);
+  padding: 2% 2%;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 1.25rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.connectabutton:hover {
+  background-color: rgba(37, 150, 190, 0.5);
+}
+
+.connectdiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#loading {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+  display: none;
+}
+
+.loadingtext {
+  font-size: 4rem;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+/*   margin: 0 auto; */
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+/*   transform: translateY(-50%); */
+  color: white;
+}
+
+#disconnect {
+  position: absolute;
+  top: 7rem;
+  left: 30%;
+  background-color: #dbdbdb;
+  width: 40%;
+  z-index: 1;
+  border-radius: 0.25rem;
+/*   border: 0.15rem solid #383838; */
+  display: none;
+  padding: 2% 0;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.disconnectabutton {
+  background-color: rgba(255, 0, 0, 0.35);
+  padding: 2% 2%;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border: none;
+  font-size: 1.25rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.disconnectabutton:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.disconnecttext {
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  max-width: 90%;
+  margin: 3% auto;
+}
+
+/* .fa-plus {
+  color: white;
+} */
+
+/*   <script type="text/javascript">
+    myData = myFunc({{data|tojson}})
+    dataC = myFunc({{dataClasses|tojson}})
+    startId = myFunc({{currentWeekday|tojson}})
+  </script> */

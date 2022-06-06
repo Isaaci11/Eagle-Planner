@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EaglePlanner</title>
+  <link href="/static/style.css" rel="stylesheet" type="text/css">
+  <script src="https://kit.fontawesome.com/730d07f7e7.js" crossorigin="anonymous"></script>
+  <script src="{{url_for('static', filename='script.js')}}"></script>
+  <script type="text/javascript">
+    weekDates = myFunc({{weekDates|tojson}})
+    weekDatesMonth = myFunc({{weekDatesMonth|tojson}})
+    currentWeekday = myFunc({{currentWeekday|tojson}})
+    weekMonths = myFunc({{weekMonths|tojson}})
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/overcast/theme.min.css" integrity="sha512-oXK3+ksfUmueL+2bDhAfV9NVvSTuNxejlbTTc4/OyyyG8uar4wX5AX+knVaKGLgQNWjs/I3MVm2kkLUD8hPnzA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js" integrity="sha512-+aXA9mgbUvFe0ToTlbt8/3vT7+nOgUmFw29wfFCsGoh8AZMRSU0p4WtOvC1vkF2JBrndPN2TuNZsHPAKPPxe8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body onload="onLoad()">
+  <div class="container">
+      <div id="loading">
+        <h1 class="loadingtext">Loading...</h1>
+      </div>
+    <div class="header">
+      <h1 class="title">EaglePlanner</h1>
+      <div id="headerbuttons">
+        <div id="colorbutton"><input oninput="changeColor()" id="colorinput" type="color"></input><i id="coloricon" class="fa-solid fa-paintbrush"></i></div>
+        <button id="connectbutton" onclick="openConnect()">Connect</button>
+        <button id="disconnectbutton" onclick="openDisconnect()">Disconnect</button>
+      </div>
+    </div>
+    <h1 id="monthtitle" class="subtitle"></h1>
+    <div id="settings">
+    </div>
+    <div id="confirmdelete">
+      <div class="confirmtextdiv">
+        <h1 class="confirmtext">Confirm?</h1>
+      </div>
+      <div class="confirmbuttons">
+        <button class="cancelbutton" onclick="doCancel()"><i class="fa-solid fa-xmark"></i></button>
+        <button class="deleteabutton" onclick="doDelete()"><i class="fa-solid fa-check"></i></i></button>
+      </div>
+    </div>
+    <button onclick="doDelete()" id="confirmdeletebutton"><i class="fa-solid fa-check fa-2xl"></i></button>
+    <div id="datepicker"></div>
+    <div id="assignmentinfo">
+      <h1 class="description">Description:</h1>
+      <p id="descriptiontext">This is description</p>
+    </div>
+    <div id="connect">
+      <button class="cancelbutton" onclick="doNotConnect()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="warningdiv">
+        <i class="fa-solid fa-link fa-4x warning"></i>
+      </div>
+      <p class="connectinfo">To connect to Schoology, go to <a target="_blank" href="https://edenpr.schoology.com/api">this link</a>. Login if prompted, then copy and paste the values here.</p>
+      <div class="inputs">
+        <input type="text" id="key" placeholder="Your Key"/>
+        <input type="text" id="secret" placeholder="Your Secret"/>
+      </div>
+      <div class="connectdiv">
+        <button class="connectabutton" onclick="doConnect()">Connect</button>
+      </div>
+    </div>
+    <div id="disconnect">
+      <button class="cancelbutton" onclick="closeDisconnect()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="warningdiv">
+        <i class="fa-solid fa-link fa-4x warning"></i>
+      </div>
+      <h1 class="disconnecttext">Are you sure you want to disconnect?</h1>
+      <div class="connectdiv">
+        <button class="disconnectabutton" onclick="doDisconnect()">Disconnect</button>
+      </div>
+    </div>
+    <div class="daypicker">
+      <button class="daybutton daybuttonlight" id="old">Past</button>
+      <button class="daybutton daybuttonlight" id="mon">Mon</button>
+      <button class="daybutton daybuttonlight" id="tue">Tue</button>
+      <button class="daybutton daybuttonlight" id="wed">Wed</button>
+      <button class="daybutton daybuttonlight" id="thu">Thu</button>
+      <button class="daybutton daybuttonlight" id="fri">Fri</button>
+      <button class="daybutton daybuttonlight" id="sat">Sat</button>
+      <button class="daybutton daybuttonlight" id="sun">Sun</button>
+      <button class="daybutton daybuttonlight" id="more">More</button>
+    </div>
+    <div class="notselectedday day" id="day0">
+      <div class="assignments">
+        <div class="assignment template" id="template">
+          <div class="assignmentstuff">
+            <h1 class="assignmenttitle assignmentname urmom" contenteditable="true" spellcheck="false">Template Assignment</h1>
+            <h1 class="assignmenttitle assignmentdash">-</h1>
+            <h1 class="assignmenttitle assignmentclass" contenteditable="true" spellcheck="false">May 20th</h1>
+          </div>
+          <div class="assignmentbuttons">
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-align-justify fa-2xl"></i></button>
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-calendar-days fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-trash-can fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    
+    <div class="notselectedday day" id="day1">
+      <div class="assignments">
+        <div class="assignment template">
+          <h1 class="assignmenttitle">Template Assignment - May 21st</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="day notselectedday" id="day2">
+      <div class="assignments">
+        <div class="assignment template">
+          <h1 class="assignmenttitle">Template Assignment - May 22nd</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="day notselectedday" id="day3">
+      <div class="assignments">
+        <div class="assignment template" id="template3">
+          <h1 class="assignmenttitle">Template Assignment - May 23rd</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="notselectedday day" id="day4">
+      <div class="assignments">
+        <div class="assignment template" id="template4">
+          <h1 class="assignmenttitle">Template Assignment - May 24th</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="day notselectedday" id="day5">
+      <div class="assignments">
+        <div class="assignment template" id="template5">
+          <h1 class="assignmenttitle">Template Assignment - May 25th</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="day notselectedday" id="day6">
+      <div class="assignments">
+        <div class="assignment template" id="template6">
+          <h1 class="assignmenttitle">Template Assignment - May 26th</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="day notselectedday" id="day7">
+      <div class="assignments">
+        <div class="assignment template" id="template7">
+          <h1 class="assignmenttitle">Template Assignment - May 27th</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="day notselectedday" id="day8">
+      <div class="assignments">
+        <div class="assignment template" id="template8">
+          <h1 class="assignmenttitle">Template Assignment - May 28th</h1>
+          <div class="assignmentbuttons">
+            <button class="editbutton assignmentbutton"><i class="fa-solid fa-pencil fa-2xl"></i></button>
+            <button class="importantbutton assignmentbutton"><i class="fa-solid fa-ellipsis fa-2xl"></i></button>
+            <button class="deletebutton assignmentbutton"><i class="fa-solid fa-x fa-2xl"></i></button>
+          </div
+        </div>
+      </div>
+    </div>
+    <div class="adddiv">
+      <button class="addassignment" onclick="addAssign()">Add New</button>
+    </div>
+    <button onclick="reset()">reset</button>
+  </div>
+</body>
+</html>
